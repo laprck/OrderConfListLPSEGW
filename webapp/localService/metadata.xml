@@ -1,0 +1,86 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="RB46.ORDER_CONF_LIST_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="xRB46xAccountingIndicatorTextType" sap:label="Texts for Accounting Indicators" sap:content-version="1">
+				<Key><PropertyRef Name="AccountingIndicatorCode"/><PropertyRef Name="Language"/></Key><Property Name="AccountingIndicatorCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase"
+					sap:label="Accounting Indicator"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language"/><Property Name="AccountingIndicatorDescr" Type="Edm.String" MaxLength="20" sap:label="Accounting Indicator"/></EntityType>
+			<EntityType Name="xRB46xOrderStatusValueHelpType" sap:label="Value Help for Order User Status" sap:content-version="1">
+				<Key><PropertyRef Name="StatusDescription"/></Key><Property Name="StatusDescription" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Status"/></EntityType>
+			<EntityType Name="xRB46xProcessTypeValueHelpType" sap:label="Value Help for Order Process Types" sap:content-version="1">
+				<Key><PropertyRef Name="OrderType"/></Key><Property Name="OrderType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Transaction Type"/><Property Name="OrderTypeDescription" Type="Edm.String" MaxLength="40" sap:label="Description"/></EntityType>
+			<EntityType Name="xRB46xConfItemListReportType" sap:label="Confirmation Items incl. Header for App" sap:content-version="1">
+				<Key><PropertyRef Name="guid"/></Key><Property Name="guid" Type="Edm.Guid" Nullable="false" sap:label="Object GUID"/><Property Name="ConfirmationID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Transaction ID"/><Property Name="ItemNumber" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Item Number"/><Property Name="ItemDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/><Property Name="ItemTypeCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Item Category"/><Property Name="ProductID" Type="Edm.String" MaxLength="54" sap:display-format="UpperCase" sap:label="Product Name"/><Property Name="Quantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="QuantityUnit" sap:label="Quantity"/><Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales Unit" sap:semantics="unit-of-measure"/><Property Name="NetValue" Type="Edm.Decimal" Precision="15" Scale="2" sap:unit="PE27CFA20A78323599A19E03D99184090" sap:label="Net Value"/><Property Name="AccountingIndicatorCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"
+					sap:text="AccountingIndicatorCode_Text" sap:label="Accounting Indicator"/><Property Name="AccountingIndicatorCode_Text" Type="Edm.String" MaxLength="20" sap:label="Accounting Indicator" sap:creatable="false"
+					sap:updatable="false"/><Property Name="ConfirmationUUID" Type="Edm.Guid" sap:label="Object GUID"/><Property Name="OrderUUID" Type="Edm.Guid" sap:label="Object GUID"/><NavigationProperty Name="to_AcIndicatorText" Relationship="RB46.ORDER_CONF_LIST_SRV.assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"
+					FromRole="FromRole_assoc_7EE9E4BE3EECB00BCD8D44D705B4E197" ToRole="ToRole_assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"/></EntityType>
+			<EntityType Name="xRB46xOrderItemListReportType" sap:label="Order Item for List Report App" sap:content-version="1">
+				<Key><PropertyRef Name="ItemUUID"/></Key><Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Sales Unit" sap:semantics="unit-of-measure"/><Property Name="NetValue" Type="Edm.Decimal" Precision="15" Scale="2" sap:unit="PA7CFF2A70B168D6A402431DBBE9B341D" sap:label="Net Value"/><Property Name="OrderUUID" Type="Edm.Guid" sap:label="Object GUID"/><Property Name="ItemUUID" Type="Edm.Guid" Nullable="false" sap:label="Object GUID"/><Property Name="ItemNumber" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Item Number"/><Property Name="ItemDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/><Property Name="ItemTypeCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Item Category"/><Property Name="ProductID" Type="Edm.String" MaxLength="54" sap:display-format="UpperCase" sap:label="Product Name"/><Property Name="Quantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="QuantityUnit" sap:label="Quantity"/><NavigationProperty Name="to_Order" Relationship="RB46.ORDER_CONF_LIST_SRV.assoc_B621DFF0F55F192C2F82F3F596146EAF"
+					FromRole="FromRole_assoc_B621DFF0F55F192C2F82F3F596146EAF" ToRole="ToRole_assoc_B621DFF0F55F192C2F82F3F596146EAF"/></EntityType>
+			<EntityType Name="xRB46xOrderListReportType" sap:label="Order with Confirmation for App" sap:content-version="1">
+				<Key><PropertyRef Name="OrderUUID"/></Key><Property Name="OrderUUID" Type="Edm.Guid" Nullable="false" sap:label="Object GUID"/><Property Name="OrderID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Service Order Number"/><Property Name="OrderDescription" Type="Edm.String" MaxLength="40" sap:label="Transaction Descr."/><Property Name="OrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Transaction Type"
+					sap:value-list="standard"/><Property Name="UserStatus" Type="Edm.String" MaxLength="30" sap:label="Status" sap:value-list="standard"/><Property Name="OrderTypeDescription" Type="Edm.String" MaxLength="40" sap:label="Order Type Descr."/><Property Name="NetValue" Type="Edm.Decimal" Precision="15" Scale="2" sap:unit="Currency" sap:label="Net Value"/><Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:semantics="currency-code"/><Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Posting Date"/><Property Name="SystemStatus" Type="Edm.String" MaxLength="40" sap:label="System status"/><Property Name="SoldToName" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Sold-To Party Name"/><Property Name="ResponsibleEmployee" Type="Edm.String" MaxLength="80" sap:label="Person Responsible"/><Property Name="ExecutingServiceEmployee" Type="Edm.String" MaxLength="80" sap:label="Service Employee"/><Property Name="URLwebUIorder" Type="Edm.String" MaxLength="255" sap:label="URL"/><NavigationProperty Name="to_ConfItem" Relationship="RB46.ORDER_CONF_LIST_SRV.assoc_A5DE2E3CF9703C1BA293746369BDEFF5"
+					FromRole="FromRole_assoc_A5DE2E3CF9703C1BA293746369BDEFF5" ToRole="ToRole_assoc_A5DE2E3CF9703C1BA293746369BDEFF5"/><NavigationProperty Name="to_Item" Relationship="RB46.ORDER_CONF_LIST_SRV.assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"
+					FromRole="FromRole_assoc_AFD1F6A8B3CA462B31114A0F7E2D0220" ToRole="ToRole_assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"/><NavigationProperty Name="to_OrderType" Relationship="RB46.ORDER_CONF_LIST_SRV.assoc_1155F7807C1DCFAAC5F307DFC232A2B0"
+					FromRole="FromRole_assoc_1155F7807C1DCFAAC5F307DFC232A2B0" ToRole="ToRole_assoc_1155F7807C1DCFAAC5F307DFC232A2B0"/><NavigationProperty Name="to_UserStatus" Relationship="RB46.ORDER_CONF_LIST_SRV.assoc_D2BD3EC70435709EE3A8F4E1112A9A65"
+					FromRole="FromRole_assoc_D2BD3EC70435709EE3A8F4E1112A9A65" ToRole="ToRole_assoc_D2BD3EC70435709EE3A8F4E1112A9A65"/></EntityType>
+			<Association Name="assoc_A5DE2E3CF9703C1BA293746369BDEFF5" sap:content-version="1"><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType" Multiplicity="1" Role="FromRole_assoc_A5DE2E3CF9703C1BA293746369BDEFF5"/><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xConfItemListReportType" Multiplicity="*" Role="ToRole_assoc_A5DE2E3CF9703C1BA293746369BDEFF5"/></Association>
+			<Association Name="assoc_AFD1F6A8B3CA462B31114A0F7E2D0220" sap:content-version="1"><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType" Multiplicity="1" Role="FromRole_assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"/><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderItemListReportType" Multiplicity="*" Role="ToRole_assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"/></Association>
+			<Association Name="assoc_1155F7807C1DCFAAC5F307DFC232A2B0" sap:content-version="1"><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType" Multiplicity="1" Role="FromRole_assoc_1155F7807C1DCFAAC5F307DFC232A2B0"/><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xProcessTypeValueHelpType" Multiplicity="1" Role="ToRole_assoc_1155F7807C1DCFAAC5F307DFC232A2B0"/></Association>
+			<Association Name="assoc_D2BD3EC70435709EE3A8F4E1112A9A65" sap:content-version="1"><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType" Multiplicity="1" Role="FromRole_assoc_D2BD3EC70435709EE3A8F4E1112A9A65"/><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderStatusValueHelpType" Multiplicity="1" Role="ToRole_assoc_D2BD3EC70435709EE3A8F4E1112A9A65"/></Association>
+			<Association Name="assoc_7EE9E4BE3EECB00BCD8D44D705B4E197" sap:content-version="1"><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xConfItemListReportType" Multiplicity="1" Role="FromRole_assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"/><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xAccountingIndicatorTextType" Multiplicity="*" Role="ToRole_assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"/></Association>
+			<Association Name="assoc_B621DFF0F55F192C2F82F3F596146EAF" sap:content-version="1"><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderItemListReportType" Multiplicity="1" Role="FromRole_assoc_B621DFF0F55F192C2F82F3F596146EAF"/><End Type="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType" Multiplicity="1" Role="ToRole_assoc_B621DFF0F55F192C2F82F3F596146EAF"/></Association>
+			<EntityContainer Name="RB46_ORDER_CONF_LIST_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="xRB46xAccountingIndicatorText" EntityType="RB46.ORDER_CONF_LIST_SRV.xRB46xAccountingIndicatorTextType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="xRB46xOrderStatusValueHelp" EntityType="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderStatusValueHelpType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="xRB46xProcessTypeValueHelp" EntityType="RB46.ORDER_CONF_LIST_SRV.xRB46xProcessTypeValueHelpType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="xRB46xConfItemListReport" EntityType="RB46.ORDER_CONF_LIST_SRV.xRB46xConfItemListReportType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="xRB46xOrderItemListReport" EntityType="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderItemListReportType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="xRB46xOrderListReport" EntityType="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_7EE9E4BE3EECB00BCD8D44D705B4E197" Association="RB46.ORDER_CONF_LIST_SRV.assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="xRB46xConfItemListReport" Role="FromRole_assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"/><End EntitySet="xRB46xAccountingIndicatorText" Role="ToRole_assoc_7EE9E4BE3EECB00BCD8D44D705B4E197"/></AssociationSet>
+				<AssociationSet Name="assoc_1155F7807C1DCFAAC5F307DFC232A2B0" Association="RB46.ORDER_CONF_LIST_SRV.assoc_1155F7807C1DCFAAC5F307DFC232A2B0"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="xRB46xOrderListReport" Role="FromRole_assoc_1155F7807C1DCFAAC5F307DFC232A2B0"/><End EntitySet="xRB46xProcessTypeValueHelp" Role="ToRole_assoc_1155F7807C1DCFAAC5F307DFC232A2B0"/></AssociationSet>
+				<AssociationSet Name="assoc_A5DE2E3CF9703C1BA293746369BDEFF5" Association="RB46.ORDER_CONF_LIST_SRV.assoc_A5DE2E3CF9703C1BA293746369BDEFF5"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="xRB46xOrderListReport" Role="FromRole_assoc_A5DE2E3CF9703C1BA293746369BDEFF5"/><End EntitySet="xRB46xConfItemListReport" Role="ToRole_assoc_A5DE2E3CF9703C1BA293746369BDEFF5"/></AssociationSet>
+				<AssociationSet Name="assoc_D2BD3EC70435709EE3A8F4E1112A9A65" Association="RB46.ORDER_CONF_LIST_SRV.assoc_D2BD3EC70435709EE3A8F4E1112A9A65"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="xRB46xOrderListReport" Role="FromRole_assoc_D2BD3EC70435709EE3A8F4E1112A9A65"/><End EntitySet="xRB46xOrderStatusValueHelp" Role="ToRole_assoc_D2BD3EC70435709EE3A8F4E1112A9A65"/></AssociationSet>
+				<AssociationSet Name="assoc_AFD1F6A8B3CA462B31114A0F7E2D0220" Association="RB46.ORDER_CONF_LIST_SRV.assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="xRB46xOrderListReport" Role="FromRole_assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"/><End EntitySet="xRB46xOrderItemListReport" Role="ToRole_assoc_AFD1F6A8B3CA462B31114A0F7E2D0220"/></AssociationSet>
+				<AssociationSet Name="assoc_B621DFF0F55F192C2F82F3F596146EAF" Association="RB46.ORDER_CONF_LIST_SRV.assoc_B621DFF0F55F192C2F82F3F596146EAF"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="xRB46xOrderItemListReport" Role="FromRole_assoc_B621DFF0F55F192C2F82F3F596146EAF"/><End EntitySet="xRB46xOrderListReport" Role="ToRole_assoc_B621DFF0F55F192C2F82F3F596146EAF"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType/OrderType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Value Help for Order Process Types"/><PropertyValue Property="CollectionPath" String="xRB46xProcessTypeValueHelp"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="OrderType"/><PropertyValue Property="ValueListProperty" String="OrderType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="OrderTypeDescription"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType/UserStatus">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Value Help for Order User Status"/><PropertyValue Property="CollectionPath" String="xRB46xOrderStatusValueHelp"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="UserStatus"/><PropertyValue Property="ValueListProperty" String="StatusDescription"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RB46.ORDER_CONF_LIST_SRV.xRB46xOrderListReportType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>OrderID</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/opu/odata/RB46/ORDER_CONF_LIST_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/opu/odata/RB46/ORDER_CONF_LIST_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
